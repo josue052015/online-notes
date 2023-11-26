@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  backendUrl: "http://www.api-notes.somee.com/api/"
 };
