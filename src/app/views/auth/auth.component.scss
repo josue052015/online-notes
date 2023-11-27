@@ -1,0 +1,85 @@
+@use "../../../assets/scss/variables.scss" as v;
+
+* {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    color: v.$main-text-color;
+}
+
+.background-radial-gradient {
+    /*    background-color: hsl(218, 41%, 15%);
+     background-image: radial-gradient(650px circle at 0% 0%,
+         hsl(218, 41%, 35%) 15%,
+         hsl(218, 41%, 30%) 35%,
+         hsl(218, 41%, 20%) 75%,
+         hsl(218, 41%, 19%) 80%,
+         transparent 100%),
+       radial-gradient(1250px circle at 100% 100%,
+         hsl(218, 41%, 45%) 15%,
+         hsl(218, 41%, 30%) 35%,
+         hsl(218, 41%, 20%) 75%,
+         hsl(218, 41%, 19%) 80%,
+         transparent 100%); */
+    background-color: v.$main-background-color;
+}
+
+#radius-shape-1 {
+    height: 220px;
+    width: 220px;
+    top: -60px;
+    left: -130px;
+    background: radial-gradient(#0a64c3, #59b4fd);
+    overflow: hidden;
+}
+
+#radius-shape-2 {
+    border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
+    bottom: -60px;
+    right: -110px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(#0a64c3, #59b4fd);
+    overflow: hidden;
+}
+
+.bg-glass {
+    //  background-color: hsla(0, 0%, 100%, 0.9) !important;
+    background-color: v.$card-background-color;
+    backdrop-filter: saturate(200%) blur(25px);
+}
+
+label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+input {
+    background: transparent;
+    border: 1px solid #c5c5c5;
+    color: v.$main-text-color !important;
+    font-size: 14px;
+    padding: 0.45rem 0.75rem !important;
+}
+
+input:focus
+{
+background: transparent !important;
+border: 1px solid v.$secondary-text-color !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus{
+    border: 1px solid v.$secondary-text-color;
+    -webkit-text-fill-color: v.$main-text-color;
+  //  -webkit-box-shadow: 0 0 0px 1000px #000 inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+button,
+button:hover {
+    background: v.$secondary-text-color;
+    border: none;
+}
+p{
+    font-size: 14px;
+}

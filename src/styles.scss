@@ -1,3 +1,4 @@
+@use "./assets/scss/variables.scss" as v;
 @font-face {
     font-family: 'Poppins,Roboto,Helvetica,Arial,sans-serif';
     src: url('assets/fonts/Poppins/Poppins-Light.ttf')
@@ -6,4 +7,14 @@
 @import "~animate.css/animate.min";
 *{
     font-family: 'Poppins,Roboto,Helvetica,Arial,sans-serif';
+}
+
+.text-active{
+    color: v.$active-color !important;
+}
+.secondary-text{
+    color: v.$secondary-text-color !important;
+}
+.pointer{
+    cursor: pointer !important;
 }
