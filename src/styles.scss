@@ -5,6 +5,7 @@
 }
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~animate.css/animate.min";
+@import '~@fortawesome/fontawesome-free/css/all.css';
 *{
     font-family: 'Poppins,Roboto,Helvetica,Arial,sans-serif';
 }
@@ -12,9 +13,28 @@
 .text-active{
     color: v.$active-color !important;
 }
+.main-text{
+    color: v.$main-text-color !important;
+}
 .secondary-text{
     color: v.$secondary-text-color !important;
 }
 .pointer{
     cursor: pointer !important;
+}
+.error-input-text{
+    color: red !important;
+    font-size: 14px !important;
+}
+.invalid-input{
+    border-color: red !important;
+}
+.main-bg{
+    background-color: v.$main-background-color !important;
+}
+.secondary-bg{
+    background-color: v.$secondary-background-color !important;
+}
+.active-bg{
+    background-color: v.$active-color !important;
 }

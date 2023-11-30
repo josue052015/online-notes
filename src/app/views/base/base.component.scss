@@ -1,0 +1,11 @@
+@use "../../../assets/scss/variables.scss" as v;
+.navbar-container{
+    width: 60px;
+}
+.nav-item{
+    width: 100%;
+    border-radius: 8px;
+}
+.nav-active a{
+    color: v.$secondary-background-color !important;
+}

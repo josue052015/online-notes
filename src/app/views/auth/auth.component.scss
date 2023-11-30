@@ -43,7 +43,7 @@
 
 .bg-glass {
     //  background-color: hsla(0, 0%, 100%, 0.9) !important;
-    background-color: v.$card-background-color;
+    background-color: v.$secondary-background-color;
     backdrop-filter: saturate(200%) blur(25px);
 }
 
@@ -60,18 +60,17 @@ input {
     padding: 9px 0.75rem !important;
 }
 
-input:focus
-{
-background: transparent !important;
-border: 1px solid v.$secondary-text-color !important;
+input:focus {
+    background: transparent !important;
+    border: 1px solid v.$secondary-text-color !important;
 }
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
-input:-webkit-autofill:focus{
+input:-webkit-autofill:focus {
     border: 1px solid v.$secondary-text-color;
     -webkit-text-fill-color: v.$main-text-color;
-  //  -webkit-box-shadow: 0 0 0px 1000px #000 inset;
+    //  -webkit-box-shadow: 0 0 0px 1000px #000 inset;
     transition: background-color 5000s ease-in-out 0s;
 }
 
@@ -80,6 +79,44 @@ button:hover {
     background: v.$secondary-text-color;
     border: none;
 }
-p{
+
+p {
     font-size: 14px;
+}
+
+.auth-title {
+    animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 335px;
+    border-right: 3px solid;
+    .secondary-text{
+        animation: none;
+    }
+    @media screen and (max-width: 1100px) {
+        width: 315px;
+    }
+    @media screen and (max-width: 992px) {
+        margin: auto;
+    }
+    @media screen and (max-width: 875px) {
+        width: 100%;
+        border-right: none;
+    }
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+   100%{
+    border-right: none;
+    animation: none;
+   }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent
+    }
 }

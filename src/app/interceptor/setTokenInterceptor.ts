@@ -6,17 +6,18 @@ import { Router } from '@angular/router';
 
 import { Helper } from '../shared/helpers/helper.service';
 import { environment } from 'src/environments/environment';
-/* @Injectable()
+import { AuthService } from "../services/auth.service";
+ @Injectable()
 export class SetTokenServiceInterceptor implements HttpInterceptor {
 
-    constructor(private router: Router, private helper: Helper) { }
+    constructor(private router: Router, private helper: Helper, private authservice: AuthService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let authReq = req;
         let token: string = this.authservice.getToken();
         if (token) {
             req = req.clone({
-                headers: req.headers.set('authorization', Bearer ${ token })
+                headers: req.headers.set('authorization', `Bearer ${ token }`)
                     .set('device-token', localStorage.getItem("device-token") ? localStorage.getItem("device-token") : "")
             });
         }
@@ -24,13 +25,13 @@ export class SetTokenServiceInterceptor implements HttpInterceptor {
         return next.handle(req).pipe(
             catchError((err: HttpErrorResponse) => {
                 if (err.status === 401) {
-                    return this.handle401Error(authReq, next)
+                 //   return this.handle401Error(authReq, next)
                 }
                 return throwError(err);
             })
         );
     }
-    private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
+   /*  private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
         const refreshTokenParams = {
             client_Id: environment.clientId,
             grant_Type: "refresh_token",
@@ -46,11 +47,11 @@ export class SetTokenServiceInterceptor implements HttpInterceptor {
                 return throwError(err);
             })
         );
-    }
+    } */
     addTokenHeader(req, token) {
         return req = req.clone({
-            headers: req.headers.set('authorization', Bearer ${ token })
+            headers: req.headers.set('authorization', `Bearer ${ token }`)
                 .set('device-token', localStorage.getItem("device-token") ? localStorage.getItem("device-token") : "")
         });
     }
-} */
+} 

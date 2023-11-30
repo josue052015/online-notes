@@ -1,0 +1,26 @@
+@use "../../../assets/scss/variables.scss" as v;
+
+.tabs {
+    border-bottom: 0.5px solid v.$main-text-color !important;
+    font-size: 14px;
+    .tab {
+        color: v.$main-text-color;
+        transition: 0.4s;
+
+        &.active {
+            color: v.$active-color !important;
+            border-bottom: 2px solid v.$active-color !important;
+        }
+    }
+}
+
+.data{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    .note-item{
+        width: 300px;
+        background: v.$secondary-background-color;
+        border-radius: 8px;
+    }
+}

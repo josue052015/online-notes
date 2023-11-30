@@ -1,37 +1,22 @@
-<form>
+<form [formGroup]="loginForm" (submit)="login()">
     <h3 class="mb-4 text-center">Login</h3>
-    
-    <div class="row">
-        <div class="col-md-6">
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">First Name</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1"
-                    placeholder="">
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="mb-3">
-                <label for="exampleFormControlInput2" class="form-label">Last Name</label>
-                <input type="text" class="form-control" id="exampleFormControlInput2"
-                    placeholder="">
-            </div>
-        </div>
-    </div>
 
-   
     <div class="mb-3">
         <label for="exampleFormControlInput3" class="form-label">Email</label>
-        <input type="email" class="form-control" id="exampleFormControlInput3"
-            placeholder="">
+        <input type="email" class="form-control" id="exampleFormControlInput3" [ngClass]="{'invalid-input': fieldIsInvalid('email')}"
+        placeholder="" formControlName="email">
+        <span class="error-input-text" *ngIf="fieldIsInvalid('email')">Invalid email</span>
     </div>
 
-   
+
     <div class="mb-4">
         <label for="exampleFormControlInput4" class="form-label">Password</label>
-        <input type="password" class="form-control" id="exampleFormControlInput4"
-            placeholder="">
+        <input type="password" class="form-control" id="exampleFormControlInput4" 
+        [ngClass]="{'invalid-input': fieldIsInvalid('password')}"
+        placeholder="" formControlName="password">
+        <span class="error-input-text" *ngIf="fieldIsInvalid('password')">Password must contain at least 8 characters.</span>
     </div>
-    <p class="text-center mb-3">Don't have an account? 
+    <p class="text-center mb-3">Don't have an account?
         <span class="pointer text-active" routerLink="/auth/register">Register</span>
     </p>
     <div class="d-flex justify-content-center">
