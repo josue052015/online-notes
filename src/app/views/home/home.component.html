@@ -1,23 +1,39 @@
 <div class="p-0 mt-2">
-    <div class="tabs d-flex pt-1 ps-2">
-      <div (click)="selectedTab = tab" class="tab p-2 me-4 pointer" [ngClass]="{ active: selectedTab == tab }"
-        *ngFor="let tab of tabs">
-        {{ tab }}
-      </div>
-      <div class="btn-add">
+  <div class="tabs d-flex pt-1 ps-2">
+    <div (click)="selectedTab = tab" class="tab p-2 me-4 pointer" [ngClass]="{ active: selectedTab == tab }"
+      *ngFor="let tab of tabs">
+      {{ tab }}
+    </div>
+    <!-- <div class="btn-add">
         <span class="">
           <i class="feather icon-plus me-2 text-truncate"></i> Add new
           assets</span>
+      </div> -->
+  </div>
+  <div class="data pt-4">
+    <div class="note-item p-3" *ngFor="let note of notes">
+      <div class="d-flex justify-content-between">
+        <span class="text-active">{{note.dateModified | date}}</span>
+        <div class="img-dropdownButton pointer" id="dropdownBasic1" ngbDropdownToggle>
+          <span class="ps-1 fa-solid fa-ellipsis-vertical"></span>
+        </div>
       </div>
+   <!--    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+
+        <button ngbDropdownItem class="pointer img-button img-icon btn btn-link  mt-1 upload-img-btn"
+          data-bs-toggle="tooltip" data-bs-placement="bottom" title="Upload Photo"><i
+            class="feather icon-upload me-2"></i>Upload Photo</button>
+
+
+
+      </div> -->
+      <hr />
+      <h3>{{note.title}}</h3>
+      <p>{{note.description}}</p>
     </div>
-    <div class="data pt-4">
-      <div class="note-item p-3" *ngFor="let note of notes">
-        {{note.title}}
-        <hr/>
-        {{note.description}}
-      </div>
-      
-     <!--  <ng-template [ngTemplateOutlet]="phoneNumbers" *ngIf="selectedTab == 'Phone'"></ng-template>
+
+    <!--  <ng-template [ngTemplateOutlet]="phoneNumbers" *ngIf="selectedTab == 'Phone'"></ng-template>
       <ng-template [ngTemplateOutlet]="emails" *ngIf="selectedTab == 'Email'"></ng-template> -->
-    </div>
-    </div>
+  </div>
+      
+</div>
