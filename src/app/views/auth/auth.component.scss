@@ -75,9 +75,12 @@ input:-webkit-autofill:focus {
 }
 
 button,
-button:hover {
+button:hover,
+button:disabled
+{
     background: v.$secondary-text-color;
     border: none;
+    height: 2.8rem;
 }
 
 p {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { catchError, of } from 'rxjs';
@@ -12,14 +12,17 @@ import { Router } from '@angular/router';
   ]
 })
 export class LoginComponent implements OnInit {
+  InvalidLogin = false;
+  loading = false;
   loginForm: FormGroup = this.formBuilder.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(8)]]
+    Email: ['', [Validators.required, Validators.email]],
+    Password: ['', [Validators.required, Validators.minLength(8)]]
   })
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private route: Router
+    private route: Router,
+    private changeDetector: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -35,19 +38,20 @@ export class LoginComponent implements OnInit {
       return;
     }
     else {
-      this.authService.login(
-        {
-          Email: this.loginForm.controls["email"].value,
-          Password: this.loginForm.controls["password"].value
-        })
+      this.loading = true
+      this.authService.login(this.loginForm.value)
         .pipe(catchError(error => {
-          return of(error)
+          this.InvalidLogin = true
+          return of(null)
         }))
-        .subscribe(response => {
-          this.authService.allow({token: response})
-          this.route.navigate(["notes"])
+        .subscribe((response: any) => {
+          this.loading = false
+          if (response) {
+            this.authService.allow({ token: response })
+            this.route.navigate(["notes"])
+          }
         })
-      
+
     }
 
   }

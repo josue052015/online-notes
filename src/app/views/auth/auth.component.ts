@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -9,14 +9,17 @@ import { RegisterComponent } from './register/register.component';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit, AfterViewInit {
-  @ViewChild('actionComponent', {read: ViewContainerRef}) actionComponent: ViewContainerRef;
+  @ViewChild('actionComponent', { read: ViewContainerRef }) actionComponent: ViewContainerRef;
   action;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private changeDetector: ChangeDetectorRef
+  ) { }
 
 
   ngOnInit(): void {
-   
+
   }
 
   ngAfterViewInit(): void {
@@ -43,7 +46,7 @@ export class AuthComponent implements OnInit, AfterViewInit {
       this.actionComponent.clear()
     }
     const componentRef = this.actionComponent.createComponent<any>(component)
-
+    this.changeDetector.detectChanges()
   }
 
 }

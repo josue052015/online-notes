@@ -1,17 +1,23 @@
-<form>
+<form [formGroup]="registerForm" (submit)="register()">
     <h3 class="mb-4 text-center">Register</h3>
 
     <div class="row">
         <div class="col-md-6">
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">First Name</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder=""
+                formControlName = "firstName"
+                >
+                <span class="error-input-text" *ngIf="fieldIsInvalid('firstName')">This field is required.</span>
             </div>
         </div>
         <div class="col-md-6">
             <div class="mb-3">
                 <label for="exampleFormControlInput2" class="form-label">Last Name</label>
-                <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="">
+                <input type="text" class="form-control" id="exampleFormControlInput2" placeholder=""
+                formControlName = "lastName"
+                >
+                <span class="error-input-text" *ngIf="fieldIsInvalid('lastName')">This field is required.</span>
             </div>
         </div>
     </div>
@@ -19,25 +25,42 @@
 
     <div class="mb-3">
         <label for="exampleFormControlInput3" class="form-label">Email</label>
-        <input type="email" class="form-control" id="exampleFormControlInput3" placeholder="">
+        <input type="email" class="form-control" id="exampleFormControlInput3" placeholder=""
+        formControlName = "email"
+        >
+        <span class="error-input-text" *ngIf="fieldIsInvalid('email')">Invalid email.</span>
     </div>
 
 
     <div class="mb-3">
         <label for="exampleFormControlInput4" class="form-label">Password</label>
-        <input type="password" class="form-control" id="exampleFormControlInput4" placeholder="">
+        <input type="password" class="form-control" id="exampleFormControlInput4" placeholder=""
+        formControlName = "password"
+        >
+        <span class="error-input-text" *ngIf="fieldIsInvalid('password')">Password must contain at least 8 characters.</span>
     </div>
 
     <div class="mb-4">
         <label for="exampleFormControlInput5" class="form-label">Confirm Password</label>
-        <input type="password" class="form-control" id="exampleFormControlInput5" placeholder="">
+        <input type="password" class="form-control" id="exampleFormControlInput5" placeholder=""
+        formControlName = "passwordConfirmation"
+        >
+        <span class="error-input-text" *ngIf="fieldIsInvalid('passwordConfirmation')">Password confirmation must be equal.</span>
     </div>
     <p class="text-center mb-3">Already have an account?
         <span class="pointer text-active" routerLink="/auth/login">Login</span>
     </p>
     <div class="d-flex justify-content-center">
-        <button type="submit" class="mt-2 w-100 btn btn-primary btn-block">
-            Register
+        <button 
+        [disabled]="loading"
+        type="submit" class="mt-2 w-100 btn btn-primary btn-block">
+            <span *ngIf="!loading else loader">Register</span>
         </button>
     </div>
 </form>
+
+<ng-template #loader>
+    <div class="spinner-border text-light" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+</ng-template>
