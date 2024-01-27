@@ -11,4 +11,7 @@ export class NotesService {
   getNotes(){
     return this.http.get(`${environment.backendUrl}Notes`)
   }
+  getRecicleBin(){
+    return this.http.get(`${environment.backendUrl}Notes/GetRecicleBin`)
+  }
 }

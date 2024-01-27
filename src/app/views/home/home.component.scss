@@ -1,15 +1,29 @@
 @use "../../../assets/scss/variables.scss" as v;
 
 .tabs {
-    border-bottom: 0.5px solid v.$main-text-color !important;
+    border-bottom: 0.5px solid #3D3D3D;
     font-size: 14px;
+    align-items: center;
+    .title{
+        font-size: 16px;
+        margin: 0;
+        font-weight: 600;
+        margin-right: 10px;
+    }
     .tab {
-        color: v.$main-text-color;
+    //   color: v.$main-text-color;
         transition: 0.4s;
-
+        background: #282828;
+        border-radius: 5px;
+        padding: 0.25rem 0.65rem;
+        margin: 0 5px;
+      // color: black;
+      //  font-weight: 600;
         &.active {
-            color: v.$active-color !important;
-            border-bottom: 2px solid v.$active-color !important;
+            /* color: v.$active-color !important;
+            border-bottom: 2px solid v.$active-color !important; */
+            background-color: v.$active-color !important;
+            color: #fff;
         }
     }
 }
@@ -19,7 +33,9 @@
     flex-wrap: wrap;
     gap: 15px;
     .note-item{
+        padding: 1.1rem 1rem;
         width: 300px;
+      //  height: 130px;
         background: v.$secondary-background-color;
         border-radius: 8px;
         font-size: 12px;
@@ -28,4 +44,23 @@
             font-weight: 600;
         }
     }
+}
+.logo-title{
+    font-size: 28px;
+    font-weight: 600;
+    color: v.$active-color;
+    margin-bottom: 10px;
+}
+.note-actions .actions{
+    display: none;
+}
+.note-item:hover{
+    filter: brightness(.9);
+    .note-actions .actions{
+        display: flex;
+        gap: 10px;
+    }
+}
+.tab-content{
+    min-height: calc(100vh - 134px);
 }

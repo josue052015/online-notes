@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { INote } from 'src/app/core/interfaces/notes.model';
 import { NotesService } from 'src/app/services/notes.service';
 
@@ -9,26 +9,45 @@ import { NotesService } from 'src/app/services/notes.service';
 })
 export class HomeComponent implements OnInit {
 
-  selectedTab = "Notes"
-  tabs = ['Notes', 'Recicle bin', 'Shared']
+  selectedTab = "All"
+  tabs = ['All', 'Recicle bin', 'Shared']
   notes: INote[] = []
-  constructor(private notesService: NotesService) { }
+  loading = false;
+  constructor(
+    private notesService: NotesService,
+    private changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.getData()
   }
 
-  getData() {
+  getData(newTab?) {
+    if(newTab) this.selectedTab = newTab;
     switch (this.selectedTab) {
-      case "Notes":
+      case "All":
         this.getNotes()
         break;
+      case "Recicle bin":
+        this.getRecicleBin()
+        break;
     }
+    this.changeDetectorRef.detectChanges()
   }
   getNotes() {
+    this.loading = true;
     this.notesService.getNotes().subscribe((response: INote[]) => {
       this.notes = response
-      console.log('notes', this.notes)
+      this.loading = false
+    }, error => {
+      this.loading = false
+    })
+  }
+  getRecicleBin(){
+    this.notesService.getRecicleBin().subscribe((response: INote[]) => {
+      this.notes = response
+      this.loading = false
+    }, error => {
+      this.loading = false
     })
   }
 

@@ -1,6 +1,9 @@
 <div class="p-0 mt-2">
+  <h1 class="logo-title"><i class="fa-regular fa-pen-to-square"></i> Online Notes</h1>
+ <!-- <span class="text-muted-custom">Overview</span> -->
   <div class="tabs d-flex pt-1 ps-2">
-    <div (click)="selectedTab = tab" class="tab p-2 me-4 pointer" [ngClass]="{ active: selectedTab == tab }"
+    <h2 class="title">Notes<span class="text-muted-custom">({{notes?.length}})</span></h2>
+    <div (click)="getData(tab)" class="tab my-2  pointer" [ngClass]="{ active: selectedTab == tab }"
       *ngFor="let tab of tabs">
       {{ tab }}
     </div>
@@ -10,30 +13,34 @@
           assets</span>
       </div> -->
   </div>
-  <div class="data pt-4">
-    <div class="note-item p-3" *ngFor="let note of notes">
-      <div class="d-flex justify-content-between">
-        <span class="text-active">{{note.dateModified | date}}</span>
-        <div class="img-dropdownButton pointer" id="dropdownBasic1" ngbDropdownToggle>
-          <span class="ps-1 fa-solid fa-ellipsis-vertical"></span>
+  <div class="data  pt-4" *ngIf="!loading else loadingSpinner">
+    <div class="note-item" *ngFor="let note of notes" >
+      <div class="d-flex justify-content-between note-actions">
+        <span class="text-muted-custom"><span class="fa-regular fa-calendar text-active pe-2"></span>{{note.dateModified | date}}</span>
+        <div class="img-dropdownButton pointer ps-1 actions">
+          <span class="fa-solid fa-pen" title="Edit"></span>
+          <span class="text-danger  fa-solid fa-trash" title="Delete"></span>
         </div>
       </div>
-   <!--    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-
-        <button ngbDropdownItem class="pointer img-button img-icon btn btn-link  mt-1 upload-img-btn"
-          data-bs-toggle="tooltip" data-bs-placement="bottom" title="Upload Photo"><i
-            class="feather icon-upload me-2"></i>Upload Photo</button>
-
-
-
-      </div> -->
+      
       <hr />
       <h3>{{note.title}}</h3>
-      <p>{{note.description}}</p>
+      <p class="text-muted-custom m-0">{{note.description}}</p>
     </div>
 
     <!--  <ng-template [ngTemplateOutlet]="phoneNumbers" *ngIf="selectedTab == 'Phone'"></ng-template>
       <ng-template [ngTemplateOutlet]="emails" *ngIf="selectedTab == 'Email'"></ng-template> -->
   </div>
-      
+
 </div>
+<ng-template #loadingSpinner>
+<div class="tab-content d-flex justify-content-center">
+  <div class="m-auto spinner-border text-light" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+</ng-template>
+<ng-template #noContent>
+
+</ng-template>
+
